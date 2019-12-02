@@ -1,18 +1,33 @@
-'use strict';
+const express = require("express");
+const serverlessHttp = require("serverless-http");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mysql = require("mysql");
 
-module.exports.hello = async event => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: "market_list"
+});
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
-};
+const app = express();
+
+app.use(cors());
+app.use(bodyParser.json());
+
+app.get("/products", function (req, res){
+  connection.query("SELECT * FROM products", function(err, data){
+    if(err){
+      console.log("Error fetching products", err);
+      res.status(500).json({
+        error: er
+      });    
+      } else {
+        res.json({
+          products: data
+        });
+      }
+  });
+});
+module.exports.products = serverlessHttp(app); 
