@@ -28,19 +28,21 @@ app.get("/products", function (req, res){
 });
 app.post("/products", function (req, res){
     const product = req.body; 
-    var sql = "INSERT INTO products (item_name, quantity, date, due_date, completed, user_id) VALUES ?";
-  connection.query(sql, [product.item_name, product.quantity, product.date ,product.due_date, product.completed, product.user_id], function (err, data){
+    const sql = "INSERT INTO products SET ?";
+  connection.query(sql, product, function (err, data){
     if(err){
       res.status(500).json({error: err});
     }else{
-      res.status(205).json({task: data});
+      product.item_id = data.insertId;
+      res.status(201).json(product);
     }
   });
   
 });
 app.delete("/products/:item_id", function (req, res){
   const item_id = req.params.item_id;
-  connection.query("DELETE from products WHERE item_id = ?", [item_id], function (err, data){
+  const sql = "DELETE from products WHERE item_id = ?";
+  connection.query(sql, [item_id], function (err, data){
     if(err){
       res.status(500).json({error: err});
     }else{
@@ -52,12 +54,12 @@ app.put("/products/:item_id", function (req, res) {
   const item_id = req.params.item_id;
   const product = req.body;
   const sql = "UPDATE products SET item_name = ?, quantity = ?, date = ?, due_date = ?, completed = ?, user_id = ? WHERE item_id = ?";
-  // var values = [product.item_name, product.quantity, product.date ,product.due_date, product.completed, product.user_id, item_id];
-  connection.query(sql, [product.item_name, product.quantity, product.date ,product.due_date, product.completed, product.user_id, item_id], function (err, data){
+  const values = [product.item_name, product.quantity, product.date ,product.due_date, product.completed, product.user_id, item_id];
+  connection.query(sql, values, function (err, data){
     if (err){
       res.status(500).json({error: err});
     }else{
-      res.status(205).json({task: data});
+      res.status(205).json({product: data});
     }
   });
  
