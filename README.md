@@ -1,8 +1,8 @@
-# Todo Application - Backend
+# Market List Application - Backend
 
-This is the back end API of a Todo Application, built throughout the [Tech Returners](https://techreturners.com) Your Journey Into Tech course. It is consumed by a front end React application, available [here](https://github.com/your-backend-repo) and connects to an RDS Database.
+This is the back end API of a Market List Application, built throughout the [Tech Returners](https://techreturners.com) Your Journey Into Tech course. It is consumed by a front end React application, available [here](https://github.com/imattos78/react_todo_application) and connects to an RDS Database.
 
-The hosted version of the application is available here: [https://github.com/whatever-link-here](https://github.com/whatever-link-here).
+The hosted version of the application is available here: [https://imattos78.github.io/react_todo_application/](https://imattos78.github.io/react_todo_application/).
 
 ### Technology Used
 
@@ -23,48 +23,54 @@ The API exposes the following endpoints:
 
 ---
 
-##### GET /tasks
+##### GET /products
 
-[https://0jjep9sqze.execute-api.eu-west-1.amazonaws.com/dev/tasks](https://0jjep9sqze.execute-api.eu-west-1.amazonaws.com/dev/tasks)
+[https://awfu5c5hx6.execute-api.eu-west-1.amazonaws.com/dev/products](https://awfu5c5hx6.execute-api.eu-west-1.amazonaws.com/dev/products)
 
 Responds with JSON containing all tasks in the Database.
 
 ---
 
-##### POST /tasks
+##### POST /products
 
-[https://0jjep9sqze.execute-api.eu-west-1.amazonaws.com/dev/tasks](https://0jjep9sqze.execute-api.eu-west-1.amazonaws.com/dev/tasks)
+[https://awfu5c5hx6.execute-api.eu-west-1.amazonaws.com/dev/products](https://awfu5c5hx6.execute-api.eu-west-1.amazonaws.com/dev/products)
 
-Will create a new task when sent a JSON payload in the format:
+Will create a new product when sent a JSON payload in the format:
 
 ```json
 {
-  "text": "walk dog",
-  "completed": false,
-  "date": "2019-12-17"
+  "item_name": "Muffins",
+	"quantity": 1,
+	"date": "2019-12-12",
+	"due_date": "2019-12-15",
+	"completed": false,
+	"user_id": 5
 }
 ```
 
 ---
 
-##### DELETE /tasks/:taskId
+##### DELETE /products/:item_id
 
-[https://0jjep9sqze.execute-api.eu-west-1.amazonaws.com/dev/tasks/:taskId](https://0jjep9sqze.execute-api.eu-west-1.amazonaws.com/dev/tasks/:taskId)
+[https://awfu5c5hx6.execute-api.eu-west-1.amazonaws.com/dev/products/:item_id](https://awfu5c5hx6.execute-api.eu-west-1.amazonaws.com/dev/products/:item_id)
 
 Deletes the task of the given ID.
 
 ---
 
-##### PUT /tasks/:taskId
+##### PUT /products/:item_id
 
-[https://0jjep9sqze.execute-api.eu-west-1.amazonaws.com/dev/tasks/:taskId](https://0jjep9sqze.execute-api.eu-west-1.amazonaws.com/dev/tasks/:taskId)
+[https://awfu5c5hx6.execute-api.eu-west-1.amazonaws.com/dev/products/:item_id](https://awfu5c5hx6.execute-api.eu-west-1.amazonaws.com/dev/products/:item_id)
 
-Will update a task when sent a JSON payload in the format:
+Will update a product when sent a JSON payload in the format:
 
 ```json
 {
-  "text": "walk dog",
+  "item_name": "Muffins",
+	"quantity": 1,
+	"date": "2019-12-12",
+	"due_date": "2019-12-15",
   "completed": true,
-  "date": "2019-12-17"
+	"user_id": 5
 }
 ```
