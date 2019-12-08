@@ -22,7 +22,7 @@ app.get("/products", function (req, res){
       console.log("Error fetching products", err);
       res.status(500).json({error: er});    
       } else {
-        res.json({products: data});
+        res.status(200).json(data);
       }
   });
 });
