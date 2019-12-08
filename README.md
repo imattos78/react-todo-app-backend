@@ -39,7 +39,7 @@ Will create a new product when sent a JSON payload in the format:
 
 ```json
 {
-  "item_name": "Muffins",
+  	"item_name": "Muffins",
 	"quantity": 1,
 	"date": "2019-12-12",
 	"due_date": "2019-12-15",
@@ -66,11 +66,11 @@ Will update a product when sent a JSON payload in the format:
 
 ```json
 {
-  "item_name": "Muffins",
+  	"item_name": "Muffins",
 	"quantity": 1,
 	"date": "2019-12-12",
 	"due_date": "2019-12-15",
-  "completed": true,
+  	"completed": true,
 	"user_id": 5
 }
 ```
